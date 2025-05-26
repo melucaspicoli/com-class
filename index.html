@@ -1,64 +1,57 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grêmio - Site Oficial</title>
-    <!-- Link para a fonte do Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+<section id="quiz">
+    <h2>Quiz: Verdadeiro ou Falso</h2>
+    <form id="quiz-form">
+        <div class="pergunta">
+            <p>1. O Grêmio foi fundado em 1903.</p>
+            <label><input type="radio" name="q1" value="true"> Verdadeiro</label>
+            <label><input type="radio" name="q1" value="false"> Falso</label>
+        </div>
+        <div class="pergunta">
+            <p>2. O estádio do Grêmio se chama Beira-Rio.</p>
+            <label><input type="radio" name="q2" value="true"> Verdadeiro</label>
+            <label><input type="radio" name="q2" value="false"> Falso</label>
+        </div>
+        <div class="pergunta">
+            <p>3. O Grêmio já venceu a Libertadores da América.</p>
+            <label><input type="radio" name="q3" value="true"> Verdadeiro</label>
+            <label><input type="radio" name="q3" value="false"> Falso</label>
+        </div>
+        <div class="pergunta">
+            <p>4. A cor principal do Grêmio é o vermelho.</p>
+            <label><input type="radio" name="q4" value="true"> Verdadeiro</label>
+            <label><input type="radio" name="q4" value="false"> Falso</label>
+        </div>
+        <div class="pergunta">
+            <p>5. O Grêmio é conhecido como "Imortal Tricolor".</p>
+            <label><input type="radio" name="q5" value="true"> Verdadeiro</label>
+            <label><input type="radio" name="q5" value="false"> Falso</label>
+        </div>
+        <button type="submit">Enviar Respostas</button>
+    </form>
+    <p id="resultado"></p>
+</section>
 
-    <!-- Cabeçalho -->
-    <header>
-        <h1>Grêmio Foot-Ball Porto Alegrense</h1>
-        <nav>
-            <ul>
-                <li><a href="#historia">História</a></li>
-                <li><a href="#noticias">Notícias</a></li>
-                <li><a href="#time">Time</a></li>
-                <li><a href="#contato">Contato</a></li>
-            </ul>
-        </nav>
-    </header>
+<script>
+  document.getElementById('quiz-form').addEventListener('submit', function(event) {
+    event.preventDefault();
 
-    <!-- Corpo do site -->
-    <main>
-        <section id="historia">
-            <h2>História do Grêmio</h2>
-            <p>Fundado em 1903, o Grêmio é um dos clubes mais tradicionais do Brasil, com inúmeras conquistas nacionais e internacionais.</p>
-        </section>
+    const respostasCorretas = {
+      q1: "true",
+      q2: "false",
+      q3: "true",
+      q4: "false",
+      q5: "true"
+    };
 
-        <section id="noticias">
-            <h2>Últimas Notícias</h2>
-            <ul>
-                <li>Lula taxa Jogadores do Internacional</li>
-                <li>Liz Macedo briga com Antonela Braga</li>
-                <li>Professor Renan manda Professora Irene para a Ala medica</li>
-            </ul>
-        </section>
+    let acertos = 0;
 
-        <section id="time">
-            <h2>Nosso Time</h2>
-            <p>Conheça os jogadores que vestem a camisa tricolor.</p>
-            <ul>
-                <li>Presiente Lula</li>
-                <li>Liz Macedo</li>
-                <li>Professora Irene</li>
-            </ul>
-        </section>
+    for (let i = 1; i <= 5; i++) {
+      const resposta = document.querySelector(`input[name="q${i}"]:checked`);
+      if (resposta && resposta.value === respostasCorretas[`q${i}`]) {
+        acertos++;
+      }
+    }
 
-        <section id="contato">
-            <h2>Contato</h2>
-            <p>Você pode entrar em contato com o Grêmio pelo e-mail: <a href="mailto:contato@gremio.com.br">gremio@gmail.com</a></p>
-        </section>
-    </main>
-
-    <!-- Rodapé -->
-    <footer>
-        <p>&copy; 2025 Luquinhas 3 ANO C.</p>
-    </footer>
-
-</body>
-</html>
+    document.getElementById('resultado').textContent = `Você acertou ${acertos} de 5 perguntas.`;
+  });
+</script>
